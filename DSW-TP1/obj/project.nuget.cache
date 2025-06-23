@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "38u0JnNqDNw=",
+  "dgSpecHash": "eCShsFnPuwU=",
   "success": true,
-  "projectFilePath": "D:\\Facultad\\UTN 3º Año\\Desarrollo de Software\\TP1\\DSW-TP1\\DSW-TP1\\DSW-TP1.csproj",
+  "projectFilePath": "D:\\Facultad\\UTN 3º Año\\Desarrollo de Software\\DSW-TP1\\DSW-TP1\\DSW-TP1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marco\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

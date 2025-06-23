@@ -15,28 +15,39 @@ Configuración y Ejecución
    
 En la consola ejecutar los siguientes comandos
 
-   -> git clone "direccion del repositorio"
-   -> cd DSW-TP1
+   -> git clone "https://github.com/MarcosB007/DSW-TP1.git"
 
-2. Configurar la cadena de conexión:
+2. Abrir el proyecto en Visual Studio 2022:
 
-Editar el archivo appsettings.json para que coincida con tu instancia de SQL Server:
+ * Ir a Archivo > Abrir > Proyecto o Solución...
+ * Seleccionar el archivo DSW-TP1.sln dentro del repositorio clonado.
+
+3. Verificar o ajustar la cadena de conexión en appsettings.json:
+
+ * Ubicado en el proyecto principal (DSW-TP1/appsettings.json).
+ * Editar el archivo appsettings.json para que coincida con tu instancia de SQL Server:
 
 "ConnectionStrings": {
   "DefaultConnection": "Server=localhost;Database=DSW_TP1_DB;Trusted_Connection=True;TrustServerCertificate=True"
 }
 
-3. Aplicar migraciones y crear la base de datos:
+4. Aplicar las migraciones para crear la base de datos:
 
-dotnet ef database update
+ * Abrir la Consola del Administrador de Paquetes (PMC) desde: Herramientas > Administrador de paquetes NuGet > Consola del Administrador de paquetes
+ * Ejecutar el siguiente comando: Update-Database
 
-4. Ejecutar el proyecto:
+5. Establecer el proyecto DSW-TP1 como proyecto de inicio:
 
-dotnet run
+ * Click derecho sobre el proyecto > Establecer como proyecto de inicio.
 
-5. Probar la API con Swagger:
+6. Ejecutar la aplicación:
 
-Ejecutar el proyecto y acceder a https://localhost:7118/swagger
+ * Presionar F5 o click en el botón verde de "Iniciar".
+ * Se abrirá el navegador con Swagger en una URL como: https://localhost:7118/swagger
+
+7. Probar los endpoints desde Swagger:
+
+ * Allí podrá ver todos los endpoints disponibles (GET, POST, PUT) y probar el comportamiento del sistema.
 
 ------ Endpoints Implementados ------
 
