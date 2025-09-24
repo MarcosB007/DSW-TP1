@@ -1,10 +1,12 @@
-
-using DSW_TP1.Data;
-using DSW_TP1.Persistencia;
+using DSW_TP1.Datos;
+using DSW_TP1.Datos.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
-namespace DSW_TP1
+namespace DSW_TP1.Presentacion
 {
     public class Program
     {
@@ -15,7 +17,7 @@ namespace DSW_TP1
             // EVITAR ERRORES DE REFERENCIAS CÍCLICAS
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
-                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
             // HABILITAMOS SWAGGUER
@@ -25,6 +27,23 @@ namespace DSW_TP1
             // LE PASAMOS LA CADENA DE CONEXION A NUESTRO CONTEXTO
             builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSQL")));
+
+            var jwtSettings = builder.Configuration.GetSection("Jwt");
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = jwtSettings["Issuer"],
+                        ValidAudience = jwtSettings["Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]))
+                    };
+                });
 
             var app = builder.Build();
 

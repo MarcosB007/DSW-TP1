@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DSW_TP1.Dominio.Models;
 
-namespace DSW_TP1.Data
+namespace DSW_TP1.Datos
 {
     public class AppDbContext: DbContext
     {
