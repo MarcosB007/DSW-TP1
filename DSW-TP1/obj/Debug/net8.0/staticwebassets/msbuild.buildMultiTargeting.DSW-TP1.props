@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DSW-TP1.props" />
+</Project>

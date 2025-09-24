@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DSW_TP1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250620191135_Inicial")]
-    partial class Inicial
+    [Migration("20250924192743_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace DSW_TP1.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DSW_TP1.Models.Order", b =>
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.Order", b =>
                 {
                     b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace DSW_TP1.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("DSW_TP1.Models.OrderItem", b =>
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.OrderItem", b =>
                 {
                     b.Property<Guid>("OrderItemId")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace DSW_TP1.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("DSW_TP1.Models.Product", b =>
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.Product", b =>
                 {
                     b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -126,15 +126,44 @@ namespace DSW_TP1.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("DSW_TP1.Models.OrderItem", b =>
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.Usuarios", b =>
                 {
-                    b.HasOne("DSW_TP1.Models.Order", "order")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PasswordHash = "1234",
+                            Username = "admin"
+                        });
+                });
+
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.OrderItem", b =>
+                {
+                    b.HasOne("DSW_TP1.Dominio.Models.Order", "order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DSW_TP1.Models.Product", "Product")
+                    b.HasOne("DSW_TP1.Dominio.Models.Product", "Product")
                         .WithMany("OrderItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -145,12 +174,12 @@ namespace DSW_TP1.Migrations
                     b.Navigation("order");
                 });
 
-            modelBuilder.Entity("DSW_TP1.Models.Order", b =>
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("DSW_TP1.Models.Product", b =>
+            modelBuilder.Entity("DSW_TP1.Dominio.Models.Product", b =>
                 {
                     b.Navigation("OrderItems");
                 });

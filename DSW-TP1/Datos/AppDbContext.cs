@@ -10,6 +10,7 @@ namespace DSW_TP1.Datos
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Usuarios> Usuarios{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,16 @@ namespace DSW_TP1.Datos
                 .HasMany(p => p.OrderItems)
                 .WithOne(oi => oi.Product!)
                 .HasForeignKey(oi => oi.ProductId);
+
+            // Insertamos un usuario al crear la base de datos
+            modelBuilder.Entity<Usuarios>().HasData(
+                new Usuarios
+                {
+                    Id = 1,
+                    Username = "admin",
+                    PasswordHash = "1234" // 🔑 para pruebas, luego hacemos hash
+                }
+            );
         }
     }
 }

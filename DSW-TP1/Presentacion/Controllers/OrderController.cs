@@ -3,11 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using DSW_TP1.Presentacion.DTO;
 using DSW_TP1.Dominio.Models;
 using DSW_TP1.Datos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DSW_TP1.Presentacion.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class OrdersController : ControllerBase
     {
         private readonly AppDbContext _context;
