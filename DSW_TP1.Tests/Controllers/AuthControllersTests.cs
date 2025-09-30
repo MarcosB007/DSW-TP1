@@ -1,16 +1,12 @@
-﻿using Xunit;
-using Moq;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using DSW_TP1.Presentacion.Controllers;
 using DSW_TP1.Datos;
 using DSW_TP1.Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace DSW_TP1.Tests.Controllers
+namespace Test1.Login
 {
     public class AuthControllerTests
     {

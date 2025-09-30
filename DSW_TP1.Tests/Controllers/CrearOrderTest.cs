@@ -1,18 +1,11 @@
-﻿using Xunit;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using DSW_TP1.Datos;
 using DSW_TP1.Dominio.Models;
 using DSW_TP1.Presentacion.Controllers;
 using DSW_TP1.Presentacion.DTO;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Net;
-using System.Text;
-using System.Text.Json;
 
-namespace DSW_TP1.Tests.Orders
+namespace Test2.Orders
 {
     public class OrdersControllerTests
     {
@@ -74,7 +67,7 @@ namespace DSW_TP1.Tests.Orders
 
             Assert.Equal(dto.CustomerId, order.CustomerId);
             Assert.Single(order.OrderItems);
-            Assert.Equal(200m, order.TotalAmount); // 2 x 100
+            Assert.Equal(200m, order.TotalAmount);
             Assert.Equal("Pending", order.OrderStatus);
 
             // Verifico que la orden esté en la base
