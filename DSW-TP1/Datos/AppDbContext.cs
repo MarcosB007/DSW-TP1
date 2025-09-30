@@ -28,13 +28,13 @@ namespace DSW_TP1.Datos
                 .WithOne(oi => oi.Product!)
                 .HasForeignKey(oi => oi.ProductId);
 
-            // Insertamos un usuario al crear la base de datos
+            //// Insertamos un usuario al crear la base de datos
             modelBuilder.Entity<Usuarios>().HasData(
                 new Usuarios
                 {
                     Id = 1,
                     Username = "admin",
-                    PasswordHash = "1234" // 🔑 para pruebas, luego hacemos hash
+                    PasswordHash = "1234" //
                 }
             );
         }

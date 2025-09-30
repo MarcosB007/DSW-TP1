@@ -53,7 +53,7 @@ namespace DSW_TP1.Presentacion.Controllers
                 ShippingAddress = dto.ShippingAddress,
                 BillingAddress = dto.BillingAddress,
                 Notes = dto.Notes,
-                TotalAmount = 0m, // Se calculará
+                TotalAmount = 0m, 
                 OrderItems = new List<OrderItem>()
             };
 

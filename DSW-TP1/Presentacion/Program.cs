@@ -29,11 +29,11 @@ namespace DSW_TP1.Presentacion
                 c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
                 {
                     Name = "Authorization",
-                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
+                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http, 
+                    Scheme = "bearer",
                     BearerFormat = "JWT",
                     In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                    Description = "Ingrese el token JWT con el formato: Bearer {su token}"
+                    Description = "Ingrese el token JWT"
                 });
 
                 c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
@@ -88,14 +88,13 @@ namespace DSW_TP1.Presentacion
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-                // Aplica las migraciones automáticamente
+                // Aplicamos las migraciones automáticamente
                 context.Database.Migrate();
 
-                // Inserta datos iniciales
+                // Insertamos datos iniciales
                 DbInitializer.Seed(context);
             }
 
-            // CONFIGURACIÓN DEL PIPELINE
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

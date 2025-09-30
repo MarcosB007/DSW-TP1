@@ -7,23 +7,23 @@ namespace DSW_TP1.Datos.Persistencia
     {
         public static void Seed(AppDbContext context)
         {
-            // Aseguramos que la base está creada y migrada
+
             context.Database.EnsureCreated();
 
-            // 1️⃣ Insertamos usuario admin si no existe
+            // Insertamos un usuario admin 
             if (!context.Usuarios.Any())
             {
                 var admin = new Usuarios
                 {
                     Username = "admin",
-                    PasswordHash = "1234" // ⚠️ Texto plano por ahora, después lo cambiamos a hash
+                    PasswordHash = "1234" 
                 };
 
                 context.Usuarios.Add(admin);
                 context.SaveChanges();
             }
 
-            // 2️⃣ Insertamos productos si no existen
+            // Insertamos productos
             if (!context.Products.Any())
             {
                 var productos = new List<Product>

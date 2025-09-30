@@ -29,7 +29,6 @@ namespace DSW_TP1.Presentacion.Controllers
 
             if (user == null) return Unauthorized("Usuario no encontrado");
 
-            // 🔑 Para simplificar: comparación directa (mejor usar hash)
             if (user.PasswordHash != request.PasswordHash)
                 return Unauthorized("Contraseña incorrecta");
 
